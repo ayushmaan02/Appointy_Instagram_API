@@ -26,7 +26,7 @@ type User struct {
 type Post struct {
 	Id              string `json:"id"`
 	Caption         string `json:"caption"`
-	ImageURL        string `json:"imageURL"`
+	imageURL        string `json:"imageURL"`
 	PostedTimeStamp string `json:"timeStamp"`
 }
 
@@ -172,8 +172,8 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	postResult, err := postsCollection.InsertOne(ctx, bson.D{
 		{"id", "ohh_hmmmm"},
 		{"caption", "Pic 1 hmm"},
-		{"ImageURL", "https://go.dev/blog/go-brand/logos.jpg"}, //Golang Logo
-		{"Posted TimeStamp", currentTime.Format("2006-January-20 15:04:05")},
+		{"imageURL", "https://go.dev/blog/go-brand/logos.jpg"}, //Golang Logo
+		{"Posted TimeStamp", currentTime.Format("02-January-2000 15:04:05")},
 	})
 
 	if err != nil {
@@ -229,7 +229,7 @@ func getPostUsingId(w http.ResponseWriter, r *http.Request) {
 	}
 
 	Posts := []Post{
-		Post{Id: id, Caption: caption, ImageURL: ImageURL, PostedTimeStamp: postedTimeStamp},
+		Post{Id: id, Caption: caption, imageURL: ImageURL, PostedTimeStamp: postedTimeStamp},
 	}
 	fmt.Println("Endpoint sucessfully triggered")
 	json.NewEncoder(w).Encode(Posts)
@@ -277,7 +277,7 @@ func getAllPostUsingId(w http.ResponseWriter, r *http.Request) {
 		ImageURL = postsFiltereds["imageURL"].(string)
 		postedTimeStamp = postsFiltereds["Posted TimeStamp"].(string)
 		post_all_1 := Posts{
-			Post{Id: id, Caption: caption, ImageURL: ImageURL, PostedTimeStamp: postedTimeStamp},
+			Post{Id: id, Caption: caption, imageURL: ImageURL, PostedTimeStamp: postedTimeStamp},
 		}
 		json.NewEncoder(w).Encode(post_all_1)
 	}
